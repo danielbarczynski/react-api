@@ -7,16 +7,21 @@ namespace react_api.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly WeatherService _service;
-        public WeatherForecastController()
+        private readonly IWeatherForecast _weather;
+        public WeatherForecastController(IWeatherForecast weather)
         {
-            _service = new WeatherService(); // new object, no dependencies
+            _weather = weather; // new object, no dependencies
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            return _service.Get();
+            return _weather.Get();
+        }
+
+        public int GetTemperature()
+        {
+            return _weather.GetTemperature();
         }
     }
 }
