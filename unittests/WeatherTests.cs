@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Moq;
 using react_api;
 using react_api.Controllers;
 using System;
@@ -27,12 +28,26 @@ namespace unittests
         public void TestWithDependencyInjection()
         {
             IWeatherForecast weather1 = new WeatherForecast();
+
             weather1.TemperatureC = 50;
             var weather2 = new WeatherForecastController(weather1);
             var wget1 = weather1.GetTemperature();
             var wget2 = weather2.GetTemperature();
 
-            wget1.Should().Be(wget2);
+            wget2.Should().Be(50);
+            wget1.Should().Be(wget2); // SUCCESS: THEY ARE THE SAME
+        }
+
+        [Test]
+        public void TestWithMoq()
+        {
+            Mock<IWeatherForecast> weather1 = new();
+
+            var wget1 = weather1.Setup(x => x.GetTemperature()).Returns(100);
+            var weather2 = new WeatherForecastController(weather1.Object);
+            var wget2 = weather2.GetTemperature();
+
+            wget2.Should().Be(100);
         }
     }
 }
