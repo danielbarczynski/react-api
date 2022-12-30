@@ -1,4 +1,4 @@
-namespace react_api
+namespace tests_di_mock
 {
     public class WeatherForecast : IWeatherForecast
     {

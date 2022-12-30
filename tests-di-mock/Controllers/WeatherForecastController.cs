@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace react_api.Controllers
+namespace tests_di_mock.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -10,7 +10,7 @@ namespace react_api.Controllers
         private readonly IWeatherForecast _weather;
         public WeatherForecastController(IWeatherForecast weather)
         {
-            _weather = weather; // new object, no dependencies
+            _weather = weather;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]

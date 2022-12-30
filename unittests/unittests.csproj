@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\react-api\react-api.csproj" />
+    <ProjectReference Include="..\tests-di-mock\tests-di-mock.csproj" />
   </ItemGroup>
 
 </Project>
